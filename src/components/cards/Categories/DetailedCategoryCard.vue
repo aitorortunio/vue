@@ -42,7 +42,7 @@ export default {
       this.loaded = true;
       axios
         .get(
-          "https://aitorortunio-servicio-web.herokuapp.com/category/" +
+          "https://aitorortunio-webservice.vercel.app/category/" +
             this.$route.params.id
         )
         .then((response) => {

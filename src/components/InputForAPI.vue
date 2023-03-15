@@ -56,7 +56,7 @@ export default {
       this.error = false,
       axios
         //.get("https://api.lunarcrush.com/v2?data=assets&key=w8d7kyiwfj80anu8n4l86&symbol="+this.text)
-        .get("https://rest.coinapi.io/v1/exchangerate/"+this.text+"/USD"+apikey.key)
+        .get("https://rest.coinapi.io/v1/exchangerate/"+this.text+"/USD?apikey="+apikey.key)
         .then((response) => {this.APIresult = response.data; this.loaded = false})
         .catch ((error) => {this.error = true; this.loaded = false;  console.log(error)});
     },

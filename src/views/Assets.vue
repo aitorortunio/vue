@@ -41,7 +41,7 @@ export default {
     getAssets() {
       this.loaded = true;
       axios
-        .get("https://aitorortunio-servicio-web.herokuapp.com/assets/")
+        .get("https://aitorortunio-webservice.vercel.app/assets/")
         .then((response) => {
           this.assets = response.data;
           this.loaded = false;

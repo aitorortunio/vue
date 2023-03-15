@@ -46,7 +46,7 @@ export default {
       this.loaded = true;
       axios
         .get(
-          "https://aitorortunio-servicio-web.herokuapp.com/asset/" +
+          "https://aitorortunio-webservice.vercel.app/asset/" +
             this.$route.params.id
         )
         .then((response) => {

@@ -42,7 +42,7 @@ export default {
     getCategories() {
       this.loaded = true;
       axios
-        .get("https://aitorortunio-servicio-web.herokuapp.com/categories/")
+        .get("https://aitorortunio-webservice.vercel.app/categories/")
         .then((response) => {
           this.categories = response.data;
           this.loaded = false;

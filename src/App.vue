@@ -25,7 +25,11 @@ export default {
     return {
       messageData: [], // See Data example below
       botOptions: {
-        colorScheme: '#8B5E83'
+        colorScheme: '#8B5E83',
+        //set url to bot avatar image
+        botAvatarImg: 'https://st3.depositphotos.com/8950810/17657/v/600/depositphotos_176577870-stock-illustration-cute-smiling-funny-robot-chat.jpg',
+        botAvatarSize: 40,
+        msgBubbleBgUser: '#8B5E83',
       }
     }
   },
@@ -42,7 +46,7 @@ export default {
           type: 'text',
           text: 'Opciones disponibles: 1 2'
         })
-      }, 1000)
+      }, 1)
     },
     msgSend(value) {
       // Push the user's message to board
