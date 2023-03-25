@@ -15,7 +15,7 @@
         la variedad de categorías y activos que existen a día de hoy
         y te enseñe a pensar en el futuro de nuestras decisiones presentes.
         Invertir tiempo en ti mismo es la única inversión segura que te dará el máximo rendimiento a lo largo de la vida <br>
-        API provista por Lunar Crush.
+        API provista por <a href="https://www.coinapi.io/">Coin API</a> .
       </v-card-text>
 
       <v-divider></v-divider>

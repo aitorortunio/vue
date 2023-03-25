@@ -12,8 +12,10 @@
 <script>
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer.vue'
-//import Chatbot from './components/ChatBot/Chatbot.vue';
 import { VueBotUI } from 'vue-bot-ui'
+import axios from "axios";
+
+let apikey = { key: 'A30E067B-DDDD-4503-A091-77127CA0C01F' };
 
 export default {
   components: {
@@ -23,6 +25,7 @@ export default {
   },
   data() {
     return {
+      //APIresult: {},
       messageData: [], // See Data example below
       botOptions: {
         colorScheme: '#8B5E83',
@@ -38,15 +41,23 @@ export default {
       // Get token if you want to build a private bot
       // Request first message here
       // Fake typing for the first message
+      this.messageData = []
       this.botTyping = true
       setTimeout(() => {
         this.botTyping = false
         this.messageData.push({
           agent: 'bot',
           type: 'text',
-          text: 'Opciones disponibles: 1 2'
+          text: 'Consulte el precio de cualquiera crypto ingresando su abreviación.'
         })
-      }, 1)
+      }, 250)
+      setTimeout(() => {
+        this.messageData.push({
+          agent: 'bot',
+          type: 'text',
+          text: 'Ejemplo: BTC, ETH, XRP, etc...'
+        })
+      }, 500)
     },
     msgSend(value) {
       // Push the user's message to board
@@ -61,29 +72,25 @@ export default {
     getResponse(value) {
       // Loading
       this.botTyping = true
-      let msg;
-      switch (value.text) {
-        case '1':
-          msg = 'Seleccionó 1'
-          break;
-        case '2':
-          msg ='Seleccionó 2';
-          break;
-        default:
-          msg ='Opción no disponible';
-      }
-
-      const replyMessage = {
-        agent: 'bot',
-        type: 'text',
-        text: msg
-      }
-      //this.inputDisable = response.disableInput
-      this.messageData.push(replyMessage)
-      // finish
-      this.botTyping = false
-
+      axios
+        .get("https://rest.coinapi.io/v1/exchangerate/" + value.text.toUpperCase() + "/USD?apikey=" + apikey.key)
+        .then((response) => {
+          const msg = response.data.rate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + " USD";
+          const replyMessage = {
+            agent: 'bot',
+            type: 'text',
+            text: msg
+          };
+          this.messageData.push(replyMessage);
+          this.botTyping = false;
+        })
+        .catch((error) => {
+          this.error = true;
+          this.loaded = false;
+          console.log(error);
+        });
     }
+
   }
 }
 </script>
