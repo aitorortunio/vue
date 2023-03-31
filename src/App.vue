@@ -87,6 +87,14 @@ export default {
         .catch((error) => {
           this.error = true;
           this.loaded = false;
+          const msg = "No se encontró el precio de '" + value.text + "'. Intente nuevamente.";
+          const replyMessage = {
+            agent: 'bot',
+            type: 'text',
+            text: msg
+          };
+          this.messageData.push(replyMessage);
+          this.botTyping = false;
           console.log(error);
         });
     }
